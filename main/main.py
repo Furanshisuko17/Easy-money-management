@@ -26,9 +26,13 @@ class MainWindow(qtw.QWidget):
 
         # Create button
 
-        button = qtw.QPushButton("Press me!")
+        button = qtw.QPushButton("Press me!",
+                                 clicked = lambda: press_it())
         self.layout().addWidget(button)   
-        
+
+        def press_it():
+            my_label.setText(f'Hello, {my_entry.text()}')
+            
 
         
         
