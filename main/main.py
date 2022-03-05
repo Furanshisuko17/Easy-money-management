@@ -1,8 +1,14 @@
+import itertools
 import os
+import tabulate
+
 
 class Expense:
 
+    id = itertools.count()
+
     def __init__(self, name, amount):
+        self.instance_id = next(Expense.id)
         self.name = name
         self.amount = amount
 
@@ -13,15 +19,18 @@ def clear_console():
     os.system(command)    
 
 def print_all(expense_list):    
-    sum = 0
-    print("Nombre:\t\t|Dinero:")
+    sum = 0.0
+    print_list = []
     
     for expense in expense_list:
         sum += expense.amount
-        print(expense.name, "\t\t|", expense.amount, sep='')
-
-    print("_______________________________")
-    print("\t\tTotal: ", sum, sep='')  
+        print_list.append([(expense.instance_id+1), expense.name, expense.amount])
+        
+        # print((expense.instance_id+1), "\t|", expense.name, "\t\t\t|", expense.amount, sep='')
+        
+    print(tabulate(print_list, headers = ["ID", "Nombre", "Dinero"]))
+    print("____________________________________________")
+    print("\t\t\t\tTotal: ", sum, sep='')  
     print(" ")
 
 clear_console()
