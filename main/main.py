@@ -1,31 +1,33 @@
 import os
 
-
 class Expense:
 
     def __init__(self, name, amount):
         self.name = name
         self.amount = amount
 
-
 def clear_console():
     command = 'clear'
     if os.name in ('nt', 'dos'): 
         command = 'cls'
-    os.system('cl')    
+    os.system('cls')    
 
-
-def print_all(expense_list):
-    for expense in expense_list:
-        print("Nombre\t\t|\tdinero")
-        print(expense.name, "\t\t|\t", expense.amount, sep='')
+def print_all(expense_list):    
+    sum = 0
+    print("Nombre:\t\t|Dinero:")
     
+    for expense in expense_list:
+        sum += expense.amount
+        print(expense.name, "\t\t|", expense.amount, sep='')
 
-expense_list = []
-
-finished = False
+    print("_______________________________")
+    print("\t\tTotal: ", sum, sep='')  
+    print(" ")
 
 clear_console()
+        
+expense_list = []
+finished = False
 
 while not finished:
 
@@ -33,7 +35,16 @@ while not finished:
 
     name = input("Ingrese el nombre del gasto: ")
     clear_console()
-    amount = input("Ingrese la cantidad de dinero: ")
+
+    print_all(expense_list)
+    
+    while True:    
+        try:
+            amount = int(input("Ingrese la cantidad de dinero: "))
+            break
+        except ValueError:
+            print("Ingrese un número.")
+        
     clear_console()
     
     expense_list.append(Expense(name, amount))
