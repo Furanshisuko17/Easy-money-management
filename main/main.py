@@ -10,7 +10,7 @@ def clear_console():
     command = 'clear'
     if os.name in ('nt', 'dos'): 
         command = 'cls'
-    os.system('cls')    
+    os.system(command)    
 
 def print_all(expense_list):    
     sum = 0
