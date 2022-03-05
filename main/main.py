@@ -28,8 +28,8 @@ def print_all(expense_list):
         # print((expense.instance_id+1), "\t|", expense.name, "\t\t\t|", expense.amount, sep='')
         
     print(tabulate(print_list, headers = ["ID", "Nombre", "Dinero"]))
-    print("___________________________________")
-    print("\t\t\tTotal: ", "{:.2f}".format(sum), sep='')  
+    print("_______________________________________")
+    print("\t\t\tTotal: S/.", "{:.2f}".format(sum), sep='')  
     print(" ")
 
 clear_console()
@@ -48,7 +48,8 @@ while not finished:
     
     while True:    
         try:
-            amount = float(input("Ingrese la cantidad de dinero: "))
+            print(name, ': S/.', sep='', end='')
+            amount = float(input())
             break
         except ValueError:
             
