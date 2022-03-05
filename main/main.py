@@ -1,13 +1,12 @@
 import itertools
 import os
-import tabulate
-
+from tabulate import tabulate
 
 class Expense:
 
     id = itertools.count()
 
-    def __init__(self, name, amount):
+    def __init__(self, name, amount: float):
         self.instance_id = next(Expense.id)
         self.name = name
         self.amount = amount
@@ -29,8 +28,8 @@ def print_all(expense_list):
         # print((expense.instance_id+1), "\t|", expense.name, "\t\t\t|", expense.amount, sep='')
         
     print(tabulate(print_list, headers = ["ID", "Nombre", "Dinero"]))
-    print("____________________________________________")
-    print("\t\t\t\tTotal: ", sum, sep='')  
+    print("___________________________________")
+    print("\t\t\tTotal: ", "{:.2f}".format(sum), sep='')  
     print(" ")
 
 clear_console()
@@ -49,9 +48,10 @@ while not finished:
     
     while True:    
         try:
-            amount = int(input("Ingrese la cantidad de dinero: "))
+            amount = float(input("Ingrese la cantidad de dinero: "))
             break
         except ValueError:
+            
             print("Ingrese un número.")
         
     clear_console()
